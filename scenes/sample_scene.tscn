@@ -79,5 +79,7 @@ tile_set = SubResource("TileSet_yqgs1")
 [node name="Player" parent="World" instance=ExtResource("3_7kit5")]
 position = Vector2(97, 364)
 script = ExtResource("4_yqgs1")
-Gravity = Vector2(0, 256)
-MovementSpeed = Vector2(256, 0)
+Gravity = 100.0
+MovementSpeed = 400.0
+JumpSpeed = 700.0
+JumpDurationFrames = 15.0

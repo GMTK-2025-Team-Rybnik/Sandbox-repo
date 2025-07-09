@@ -5,31 +5,47 @@ public partial class Player : CharacterBody2D
 {
 
     [Export]
-    public Vector2 Gravity;
+    public float Gravity;
     [Export]
-    public Vector2 MovementSpeed;
+    public float MovementSpeed;
+    [Export]
+    public float JumpSpeed;
+    [Export]
+    public float JumpDurationFrames;
+
+    private Vector2 JumpVelocity;
 
     public override void _PhysicsProcess(double delta)
     {
         Velocity = Vector2.Zero;
         if (!IsOnFloor())
         {
-            Velocity += Gravity;
+            Velocity += new Vector2(0f, Gravity);
+        }
+
+        if (IsOnFloor())
+        {
+            JumpVelocity = Vector2.Zero;
+        }
+        else
+        {
+            JumpVelocity -= new Vector2(0, JumpSpeed) / JumpDurationFrames;
         }
 
         if (Input.IsActionPressed("move_left"))
         {
-            Velocity -= MovementSpeed;
+            Velocity -= new Vector2(MovementSpeed, 0);
         }
         if (Input.IsActionPressed("move_right"))
         {
-            Velocity += MovementSpeed;
+            Velocity += new Vector2(MovementSpeed, 0);
         }
-        if (Input.IsActionPressed("jump"))
+        if (Input.IsActionJustPressed("jump") && IsOnFloor())
         {
-            // Velocity += MovementSpeed;
+            JumpVelocity += new Vector2(0, JumpSpeed);
         }
 
+        Velocity -= JumpVelocity;
         MoveAndSlide();
     }
 
