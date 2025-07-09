@@ -6,4 +6,4 @@ You can use this repo to test Godot-GitHub connectivity or practice your Git ski
 
 # Contents
 Inside this repo there's a tiny Godot C# project made in Godot 4.4.1. \
-You should be able to run it by pulling it and improting it into Godot.
+You should be able to run this project by pulling it and importing it into Godot.
